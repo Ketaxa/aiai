@@ -1,19 +1,17 @@
 .request_store {
-  background: #FFCA86;
-  height: 100%;
-  padding: 40px;
-  border-radius: 10px;
-}
-.container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  background: #ffca86;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  gap: 20px;
 }
 .header {
   text-align: center;
-}
-.request_el {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  font-size: 18px;
+  line-height: 120%;
+  color: #ffffff;
+  font-weight: 700;
 }

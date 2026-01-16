@@ -1,0 +1,11 @@
+.answer {
+  display: flex;
+  padding: 10px;
+  justify-content: flex-start;
+  font-size: 18px;
+  line-height: 120%;
+  color: #ffffff;
+  width: 100%;
+  background-color: orange;
+  border-radius: 10px;
+}

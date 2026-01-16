@@ -8,7 +8,6 @@ import './index.css'
 function App() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [history, setHistory] = useState([]);
   const [message, setMessage] = useState([])
   
 
@@ -16,22 +15,21 @@ function App() {
   return (
     <div className={styles.grid_comp}>
       <div className={styles.sidebar}>
-      <Sidebar history={history} />
+      <Sidebar message={message} />
 </div>
 <div className={styles.request_block}>
       <Chat
         input={input}
         setInput={setInput}
         loading={loading}
-        history={history}
         setMessage={setMessage}
+        message={message}
         onSubmit={(e) => {
           getRequest({
             e,
             input,
             setInput,
             setLoading,
-            setHistory,
             message,
             setMessage
           })}

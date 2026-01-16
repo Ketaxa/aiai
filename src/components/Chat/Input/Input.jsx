@@ -1,19 +1,6 @@
 import styles from './Input.module.css'
-export default function Input({onSubmit, input, setInput, loading, setMessage}) {
-
-const handleMessage = () => {
-  if (!input.trim()) return;
-  setMessage(prev => [
-    ...prev,
-    {
-      id: Date.now(),
-      sender: 'user',
-      text: input
-    }
-  ]);
-  setInput("");
-}
-    return (
+export default function Input({onSubmit, input, setInput, loading}) {
+   return (
         <div className={styles.form_block}>
           <h1 className={styles.main_header}>VibeCoding GPT v1.0</h1>
             <form onSubmit={onSubmit} className={styles.form}>
@@ -24,7 +11,7 @@ const handleMessage = () => {
             placeholder="Введите запрос..."
             onChange={(e) => setInput(e.target.value)}
               />
-            <button className={styles.button} type='submit' onClick={handleMessage}>{loading ? "Отправка..." : "Отправить запрос"}</button>
+            <button className={styles.button} type='submit'>{loading ? "Отправка..." : "Отправить запрос"}</button>
             </form>
         
         </div>

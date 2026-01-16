@@ -1,19 +1,18 @@
 import styles from "./Sidebar.module.css";
 import History from "./History/History";
-export default function Sidebar({ history }) {
+export default function Sidebar({ message }) {
   return (
     <div className={styles.request_store}>
-      <div className={styles.container}>
       <h1 className={styles.header}>Список запросов</h1>
-      {/* <div className={styles.request_el}> */}
-      {
-      history.length === 0
+      {message.length === 0
         ? "пока нет запросов"
-        : history.map((item, index) => (
-            <History item={item} input={item.pull} response={item.response}  key={`${Date.now()}_${index}`} />
-          ))}
-          {/* </div> */}
-          </div>
+        : message.map((item) =>
+            item.sender === "user" ? (
+              <History item={item} key={item.id} />
+            ) : (
+              console.log(item)
+            )
+          )}
     </div>
   );
 }

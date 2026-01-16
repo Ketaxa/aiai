@@ -1,24 +1,22 @@
-import styles from './Display.module.css'
-import Question from './Question/Question';
-import Answer from './Answer/Answer';
-import { useEffect } from 'react';
-export default function Display({message, history}) {
-  useEffect(() => {
-    console.log(message[0].text)
-  }, [message])
-    return (
-              <div className={styles.information}> 12321
-        {/* {
-              history.length === 0
-                ? "Начните диалог!"
-                : history.map((item, index) => (
-                  <div key={index}> 
-                    <Question item={item.pull}/>
-                    <Answer item={item.response}/>
-                    </div>
-                  ))} */}
-        </div>
-    )
+import styles from "./Display.module.css";
+import Question from "./Question/Question";
+import Answer from "./Answer/Answer";
+export default function Display({ message }) {
+  return (
+    <div className={styles.information}>
+      {message.length === 0
+        ? "Начните диалог!"
+        : message.map((item) => (
+            <div key={item.id}>
+              {item.sender === "user" ? (
+                <Question item={item.text} />
+              ) : (
+                <Answer item={item.text} />
+              )}
+            </div>
+          ))}
+    </div>
+  );
 }
 /*
 ИНСТРУКЦИЯ: ЧАТ С ИИ НА REACT (useState + useEffect)

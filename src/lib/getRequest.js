@@ -1,5 +1,5 @@
 const API_KEY =
-  "";
+  "secret";
 
 export async function getRequest({
   e,
@@ -11,10 +11,31 @@ export async function getRequest({
   setMessage
 }) {
   e.preventDefault();
+  
+  if (!input.trim()) return;
+  
+  // Сначала добавляем сообщение пользователя
+  const userMessage = {
+    id: Date.now(),
+    sender: 'user',
+    text: input
+  };
+  
+  // Обновляем состояние с новым сообщением пользователя
+  setMessage(prev => [...prev, userMessage]);
+  
+  // Формируем массив сообщений для API (включая новое сообщение пользователя)
+  const updatedMessages = [...message, userMessage];
+  const messagesForAPI = updatedMessages.map(msg => ({
+    role: msg.sender === 'user' ? 'user' : 'assistant',
+    content: msg.text
+  }));
+  
   setLoading(true);
+  setInput("");
   
   try {
-    console.log(message.id)
+
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -23,13 +44,17 @@ export async function getRequest({
       },
       body: JSON.stringify({
         model: "gpt-4o",
-        messages: toString(message[0].text),
+        messages: messagesForAPI,
       }),
     });
 
-
     const data = await response.json();
-    const request = data.choices[0].messages.content;
+    
+    if (!response.ok) {
+      throw new Error(data.error?.message || 'Ошибка запроса к OpenAI');
+    }
+
+    const request = data.choices[0].message.content;
 
     setMessage(prev => [
       ...prev,
@@ -39,11 +64,12 @@ export async function getRequest({
         text: request
       }
     ])
+    console.log(message)
     //setHistory((prev) => [...prev, { pull: input, response: request}]); Async внесение данных для дин отображения вопросов и ответов нейросети
   } catch (error) {
     console.error(error);
+    alert('Ошибка: ' + error.message);
   } finally {
     setLoading(false);
-    setInput("");
   }
 }
