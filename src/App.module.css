@@ -1,0 +1,14 @@
+.grid_comp {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.sidebar {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+}
+.request_block {
+  display: flex;
+  flex: 3;
+}

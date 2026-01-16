@@ -1,0 +1,52 @@
+.main_header {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+}
+
+.button {
+  display: block;
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: #FFB841;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 20px;
+  color: white;
+  font-weight: 800;
+  -webkit-text-stroke: #000000 1px;
+
+}
+.button:hover {
+  background-color: #ffb9419d;
+}
+.form_block {
+  display: flex;
+
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.input_field {
+  flex: 5;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #858585;
+  font-size: 20px;
+  
+}
+.input_field:focus {
+outline: none;
+}
